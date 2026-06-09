@@ -1,0 +1,44 @@
+void merge(vector<elem>& v, int left, int mid, int right){
+    int n = right - left + 1;
+    vector<elem> aux(n);
+    int i = left;
+    int j = mid + 1;
+    int k = 0;
+    while(i <= mid && j <= right){
+        if(v[i] <= v[j]) { aux[k] = v[i]; i++; }
+        else { aux[k] = v[j]; j++; }
+        k++;
+    }
+
+    while(i <= mid) { aux[k] = v[i]; k++; i++; }
+    while(j <= right) { aux[k] = v[j]; k++; j++; }
+
+    for(k = 0; k < n; k++) { v[left + k] = aux[k] }
+}
+
+void mergeSort(vector<elem>& v, int left, int right){
+    while(left < right){
+        int m = (left + right) / 2;
+        mergeSort(v, left, m);
+        mergeSort(v, m + 1, right);
+        merge(v, left, m, right);
+    }
+}
+
+v = { 9, -7, 0, 1, 4, -3, 3, 8 }
+
+mergeSort(v, 0, 7); m = 3;
+    mergeSort(v, 0, 3); m = 1;
+        mergeSort(v, 0, 1); m = 0;
+            mergeSort(v, 0, 0);
+            mergeSort(v, 1, 1);
+            merge(v, 0, 0, 1); n = 2; i = 0; j = 1; k = 0;
+                (9 <= -7) => false;
+                aux[0] = -7; j = 2; k = 1;
+                aux[1] = 9; k = 2; i = 1;
+                v[0] = aux[0];
+                v[1] = aux[1];
+            v = { -7, 9, ... }
+
+
+
