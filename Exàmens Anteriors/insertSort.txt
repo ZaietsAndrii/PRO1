@@ -1,0 +1,11 @@
+void insertSort(vector<elem>& v){
+    for(i = 1; i < v.size(); v++){
+        int x = v[i];
+        int j = i;
+        while(j > 0 && v[j - 1] > x){ 
+            v[j] = v[j - 1];
+            j--;
+        }
+        v[j] = x;
+    }
+}
